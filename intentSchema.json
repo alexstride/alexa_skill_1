@@ -14,28 +14,22 @@
         "samples": []
       },
       {
-        "name": "NumberIntent",
+        "name": "DeparturesToLondonIntent",
         "samples": [
-          "remember the number {myNumber}",
-          "the number is {myNumber}"
+          "give me the times for the next trains to London",
+          "when are the next trains to London"
         ],
-        "slots": [
-          {
-            "name": "myNumber",
-            "type": "AMAZON.NUMBER"
-          }
-        ]
+        "slots": []
       },
       {
-        "name": "TestIntent",
+        "name": "ArrivalsFromLondonIntent",
         "samples": [
-          "what was my number",
-          "tell me my number",
-          "what was the number"
+          "when are the next arrivals from London",
+          "are there trains arriving from London"
         ],
         "slots": []
       }
     ],
-    "invocationName": "number memory"
+    "invocationName": "Ashtead station"
   }
 }

@@ -1,4 +1,5 @@
 var Alexa = require('alexa-sdk');
+const soap = require('soap');
 
 exports.handler = function(event, context) {
   var alexa = Alexa.handler(event, context);
@@ -9,20 +10,21 @@ exports.handler = function(event, context) {
 
 var handlers = {
   'LaunchRequest': function() { //Executes when a new session is launched
+    console.log('LAUNCH REQUEST TRIGGERED');
     this.emit('LaunchIntent');
   },
 
   'LaunchIntent': function() {
-    this.emit(':ask', 'Hi, what is your number?');
+    console.log('LAUNCH INTENT FIRING');
+    this.emit(':ask', 'How can I help you?');
   },
 
-  'NumberIntent': function() {
-    this.attributes['myNumber'] = this.event.request.intent.slots.myNumber.value;
-    this.emit(':ask', 'Okay, I got it.');
+  'DeparturesToLondonIntent': function() {
+    // this.attributes['myNumber'] = this.event.request.intent.slots.myNumber.value;
+    this.emit(':tell', 'This is where I will tell you the train times into London');
   },
 
-  'TestIntent': function() {
-    if (!this.attributes.myNumber) this.emit(':tell', 'I don\'t remember you telling me a number');
-    this.emit(':tell', 'I still remember that your number is, ' + this.attributes['myNumber'].toString());
+  'ArrivalsFromLondonIntent': function() {
+    this.emit(':tell', 'This is where I will tell you the train times for arrivals from London');
   }
 };
