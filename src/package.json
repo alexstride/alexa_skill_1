@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "alexa-sdk": "^1.0.19",
+    "national-rail-darwin": "^1.0.2",
     "soap": "^0.23.0"
   }
 }
