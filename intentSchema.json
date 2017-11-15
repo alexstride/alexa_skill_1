@@ -14,22 +14,22 @@
         "samples": []
       },
       {
-        "name": "DeparturesToLondonIntent",
-        "samples": [
-          "give me the times for the next trains to London",
-          "when are the next trains to London"
-        ],
-        "slots": []
-      },
-      {
         "name": "ArrivalsFromLondonIntent",
         "samples": [
           "when are the next arrivals from London",
           "are there trains arriving from London"
         ],
         "slots": []
+      },
+      {
+        "name": "DeparturesToLondonIntent",
+        "samples": [
+          "give me the times for the next trains to London",
+          "when are the next trains to London"
+        ],
+        "slots": []
       }
     ],
-    "invocationName": "Ashtead station"
+    "invocationName": "local timetable"
   }
 }

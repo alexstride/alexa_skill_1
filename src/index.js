@@ -10,7 +10,7 @@ exports.handler = function(event, context) {
 };
 
 const renderAsSentence = ({ destination: { name }, std, etd }) => {
-  let outputString = `<s>The ${std} service to ${name} is `;
+  let outputString = `<s>The ${std} to ${name} is `;
   if (etd === 'On time') {
     outputString += 'running on time';
   } else if (etd === 'Cancelled') {
@@ -18,7 +18,7 @@ const renderAsSentence = ({ destination: { name }, std, etd }) => {
   } else if (etd === 'Delayed') {
     outputString += 'indefinitely delayed';
   } else {
-    outputString += `is delayed and expected at ${etd}`;
+    outputString += `delayed and expected at ${etd}`;
   }
   outputString += '</s>';
   return outputString;
@@ -54,10 +54,8 @@ var handlers = {
         console.log(err.body);
         boundEmit('SessionEndedIntent');
       }
-      const speechResponse = '<speak>'
-      + result.trainServices.filter(service => service.destination.crs === 'WAT' || service.destination.crs === 'VIC').map(renderAsSentence).join(' ')
-      + '</speak>';
-      boundEmit(':tell', JSON.stringify({ type: 'SSML', ssml: speechResponse}));
+      const speechResponse = result.trainServices.filter(service => service.destination.crs === 'WAT' || service.destination.crs === 'VIC').slice(0, 4).map(renderAsSentence).join(' ');
+      boundEmit(':tell', speechResponse);
     });
   },
 
