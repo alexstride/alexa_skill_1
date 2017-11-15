@@ -4,9 +4,27 @@ const Darwin = require('national-rail-darwin')
 const rail = new Darwin();
 // const axios = require('axios');
 
+const renderAsSentence = ({ destination: { name }, std, etd }) => {
+  let outputString = `<s>The ${std} service to ${name} is `;
+  if (etd === 'On time') {
+    outputString += 'running on time';
+  } else if (etd === 'Cancelled') {
+    outputString += 'cancelled';
+  } else if (etd === 'Delayed') {
+    outputString += 'indefinitely delayed';
+  } else {
+    outputString += `is delayed and expected at ${etd}`;
+  }
+  outputString += '</s>';
+  return outputString;
+};
+
 rail.getDepartureBoard('AHD', {}, function(err, result){
   if (err) console.log(err);
-  console.log(result);
+  const speechResponse = '<speak>'
+  + result.trainServices.filter(service => service.destination.crs === 'WAT' || service.destination.crs === 'VIC').map(renderAsSentence).join(' ')
+  + '</speak>';
+  console.log(speechResponse);
 });
 
 // console.log(process.env.DARWIN_TOKEN);
